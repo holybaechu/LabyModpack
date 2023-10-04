@@ -1,6 +1,7 @@
 const axios = require('axios');
 const fs = require('fs')
 const { execSync } = require('child_process');
+const path = require('path');
 
 async function getVersionByGameVersion(game_version, modId, modLoader){
     const versions = (await axios.get(`https://api.modrinth.com/v2/project/${modId}/version`, {})).data
@@ -28,8 +29,8 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
     const mods = JSON.parse(await fs.readFileSync('../mods.json', 'utf-8'))
 
     for (let version of versions){
-        await execSync(`ezpack export modrinth ${version}`, {cwd: `${__dirname+'/..'}`})
-        await execSync(`ezpack export modsZip ${version}`)
+        await execSync(`ezpack export modrinth ${version}`, {cwd: path.basename(path.dirname(__dirname))})
+        await execSync(`ezpack export modsZip ${version}`, {cwd: path.basename(path.dirname(__dirname))})
 
         let expectedMrpackName = `Modrinth-${version}.mrpack`
         let expectedZipName = `ModsZip-${version}.zip`
@@ -63,8 +64,8 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
 
         const formData = new FormData();
         formData.append('data', JSON.stringify(data))
-        formData.append('mrpack', fs.createReadStream(__dirname+'/../exports/'+expectedMrpackName))
-        formData.append('zip', fs.createReadStream(__dirname+'/../exports/'+expectedZipName))
+        formData.append('mrpack', fs.createReadStream(path.basename(path.dirname(__dirname))+'/exports/'+expectedMrpackName))
+        formData.append('zip', fs.createReadStream(path.basename(path.dirname(__dirname))+'/exports/'+expectedZipName))
 
         await axios.post("https://api.modrinth.com/v2/version", {
             headers: {
