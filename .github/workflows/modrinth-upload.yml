@@ -15,9 +15,10 @@ jobs:
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
-      - run: cd scripts
       - run: npm install
+        working-directory: ./scripts
       - run: node upload-modrinth.js
+        working-directory: ./scripts
         env:
           token: ${{secrets.MODRINTH}}
           commit_message: ${{github.event.head_commit.message}}
