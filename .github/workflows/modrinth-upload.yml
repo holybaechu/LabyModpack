@@ -23,5 +23,6 @@ jobs:
           touch .env
           echo token=${{ secrets.MODRINTH }} >> .env
           echo commit_message=${{ secrets.github.event.head_commit.message }} >> .env
+        working-directory: ./scripts
       - run: node upload-modrinth.js
         working-directory: ./scripts
