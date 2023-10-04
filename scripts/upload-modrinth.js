@@ -28,7 +28,7 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
     const mods = JSON.parse(await fs.readFileSync('../mods.json', 'utf-8'))
 
     for (let version of versions){
-        await execSync(`ezpack export modrinth ${version}`)
+        await execSync(`ezpack export modrinth ${version}`, {cwd: `${__dirname+'/..'}`})
         await execSync(`ezpack export modsZip ${version}`)
 
         let expectedMrpackName = `Modrinth-${version}.mrpack`
@@ -63,8 +63,8 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
 
         const formData = new FormData();
         formData.append('data', JSON.stringify(data))
-        formData.append('mrpack', fs.createReadStream('./exports/'+expectedMrpackName))
-        formData.append('zip', fs.createReadStream('./exports/'+expectedZipName))
+        formData.append('mrpack', fs.createReadStream(__dirname+'/../exports/'+expectedMrpackName))
+        formData.append('zip', fs.createReadStream(__dirname+'/../exports/'+expectedZipName))
 
         await axios.post("https://api.modrinth.com/v2/version", {
             headers: {
