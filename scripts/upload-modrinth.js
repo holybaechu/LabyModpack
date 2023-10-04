@@ -23,9 +23,9 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
 };
 
 (async () => {
-    const versions = JSON.parse(await fs.readFileAsync('versions.json', 'utf-8'))
-    const manifest = JSON.parse(await fs.readFileAsync('../manifest.json', 'utf-8'))
-    const mods = JSON.parse(await fs.readFileAsync('../mods.json', 'utf-8'))
+    const versions = JSON.parse(await fs.readFileSync('versions.json', 'utf-8'))
+    const manifest = JSON.parse(await fs.readFileSync('../manifest.json', 'utf-8'))
+    const mods = JSON.parse(await fs.readFileSync('../mods.json', 'utf-8'))
 
     for (let version of versions){
         await execSync(`ezpack export modrinth ${version}`)
