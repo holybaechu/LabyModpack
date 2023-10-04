@@ -1,0 +1,23 @@
+name: Upload to Modrinth
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  upload-mod:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org/
+      - run: cd scripts
+      - run: npm install
+      - run: node upload-modrinth.js
+        env:
+          token: ${{secrets.MODRINTH}}
+          commit_message: ${{github.event.head_commit.message}}
