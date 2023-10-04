@@ -29,8 +29,8 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
     const mods = JSON.parse(await fs.readFileSync('../mods.json', 'utf-8'))
 
     for (let version of versions){
-        await execSync(`ezpack export modrinth ${version}`, {cwd: path.dirname(__dirname)})
-        await execSync(`ezpack export modsZip ${version}`, {cwd: path.dirname(__dirname)})
+        await execSync(`ezpack export Modrinth ${version}`, {cwd: path.dirname(__dirname)})
+        await execSync(`ezpack export ModsZip ${version}`, {cwd: path.dirname(__dirname)})
 
         let expectedMrpackName = `Modrinth-${version}.mrpack`
         let expectedZipName = `ModsZip-${version}.zip`
