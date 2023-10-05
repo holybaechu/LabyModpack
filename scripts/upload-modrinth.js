@@ -68,6 +68,8 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
             version_type: 'alpha'
         }
 
+        console.log(data)
+
         const formData = new FormData();
         formData.append('data', JSON.stringify(data))
         formData.append(expectedMrpackName, fs.createReadStream(path.dirname(__dirname)+'/exports/'+expectedMrpackName))
