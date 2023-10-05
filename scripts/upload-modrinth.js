@@ -61,7 +61,8 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
             project_id: 'In8bmloC',
             file_parts: ['mrpack', 'zip'],
             primary_file: 'zip',
-            dependencies: dependencies
+            dependencies: dependencies,
+            version_type: 'alpha'
         }
 
         const formData = new FormData();
