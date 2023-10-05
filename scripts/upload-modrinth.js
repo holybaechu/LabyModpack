@@ -39,14 +39,17 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
 
         const dependencies = []
         for (let mod of mods){
-            let modVersionInfo = mod.mirrors["Modrinth"] ? await getVersionByGameVersion(version, mod.mirrors["Modrinth"].id, manifest.modloader) : null
+            let modVersionInfo = await getVersionByGameVersion(version, mod.mirrors["Modrinth"].id, manifest.modloader)
 
-            dependencies.push({
-                dependency_type: "embedded",
-                file_name: modVersionInfo != null ? modVersionInfo.files[0].filename : null,
-                project_id: mod.mirrors["Modrinth"] ? mod.mirrors["Modrinth"].id : null,
-                version_id: modVersionInfo != null ? modVersionInfo.id : null
-            })
+            if (mod.mirrors["Modrinth"]){
+                dependencies.push({
+                    dependency_type: "embedded",
+                    file_name: modVersionInfo.files[0].filename,
+                    project_id: mod.mirrors["Modrinth"].id,
+                    version_id: modVersionInfo.id
+                })
+            }
+
         }
 
         const data = {
