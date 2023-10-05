@@ -2,6 +2,7 @@ const axios = require('axios');
 const fs = require('fs')
 const { execSync } = require('child_process');
 const path = require('path');
+const formdata = require('form-data')
 
 require('dotenv').config()
 
@@ -70,10 +71,14 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
 
         console.log(data)
 
-        const formData = new FormData();
+        const formData = new formdata();
         formData.append('data', JSON.stringify(data))
-        formData.append(expectedMrpackName, fs.createReadStream(path.dirname(__dirname)+'/exports/'+expectedMrpackName), expectedMrpackName)
-        formData.append(expectedZipName, fs.createReadStream(path.dirname(__dirname)+'/exports/'+expectedZipName), expectedZipName)
+        formData.append(expectedMrpackName, fs.createReadStream(path.dirname(__dirname)+'/exports/'+expectedMrpackName), {
+            filename: expectedMrpackName
+        })
+        formData.append(expectedZipName, fs.createReadStream(path.dirname(__dirname)+'/exports/'+expectedZipName), expectedZipName, {
+            filename: expectedZipName
+        })
 
         await axios.post("https://api.modrinth.com/v2/version", formData, {
             headers: {
