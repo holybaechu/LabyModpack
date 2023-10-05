@@ -54,6 +54,7 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
 
         const data = {
             name: `${manifest.name} ${manifest.version} for ${version}`,
+            changelog: process.env['commitMessage'],
             version_number: manifest.version,
             game_versions: [version],
             loaders: [manifest.modloader],
@@ -78,6 +79,10 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authorization': process.env.token,
+                'Content-Disposition': `
+                form-data; name="${expectedMrpackName}"; filename="${expectedMrpackName}"
+                form-data; name="${expectedZipName}"; filename="${expectedZipName}"
+                `,
             }
         })
     }
