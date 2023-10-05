@@ -5,6 +5,8 @@ const path = require('path');
 
 require('dotenv').config()
 
+console.log(process.env)
+
 async function getVersionByGameVersion(game_version, modId, modLoader){
     const versions = (await axios.get(`https://api.modrinth.com/v2/project/${modId}/version`, {})).data
 
