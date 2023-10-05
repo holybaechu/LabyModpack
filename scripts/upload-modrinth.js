@@ -54,7 +54,7 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
 
         const data = {
             name: `${manifest.name} ${manifest.version} for ${version}`,
-            changelog: process.env['commitMessage'],
+            changelog: 'test',
             version_number: manifest.version,
             game_versions: [version],
             loaders: [manifest.modloader],
@@ -64,6 +64,7 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
             project_id: 'In8bmloC',
             file_parts: [expectedMrpackName, expectedZipName],
             primary_file: expectedZipName,
+            dependencies: dependencies,
             version_type: 'alpha'
         }
 
