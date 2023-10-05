@@ -63,8 +63,8 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
             status: 'listed',
             requested_status: 'listed',
             project_id: 'In8bmloC',
-            file_parts: [expectedZipName, expectedMrpackName],
-            primary_file: expectedZipName,
+            file_parts: [expectedMrpackName],
+            primary_file: expectedMrpackName,
             dependencies: dependencies,
             version_type: 'alpha'
         }
@@ -76,9 +76,9 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
         formData.append(expectedMrpackName, fs.createReadStream(path.dirname(__dirname)+'/exports/'+expectedMrpackName), {
             filename: expectedMrpackName
         })
-        formData.append(expectedZipName, fs.createReadStream(path.dirname(__dirname)+'/exports/'+expectedZipName), expectedZipName, {
-            filename: expectedZipName
-        })
+        // formData.append(expectedZipName, fs.createReadStream(path.dirname(__dirname)+'/exports/'+expectedZipName), expectedZipName, {
+        //     filename: expectedZipName
+        // })
 
         await axios.post("https://api.modrinth.com/v2/version", formData, {
             headers: {
