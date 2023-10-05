@@ -64,7 +64,6 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
             project_id: 'In8bmloC',
             file_parts: [expectedMrpackName, expectedZipName],
             primary_file: expectedZipName,
-            dependencies: dependencies,
             version_type: 'alpha'
         }
 
