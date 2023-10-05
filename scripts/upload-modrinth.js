@@ -54,7 +54,6 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
 
         const data = {
             name: `${manifest.name} ${manifest.version} for ${version}`,
-            changelog: 'test',
             version_number: manifest.version,
             game_versions: [version],
             loaders: [manifest.modloader],
