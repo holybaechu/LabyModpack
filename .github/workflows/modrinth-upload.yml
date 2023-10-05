@@ -20,6 +20,6 @@ jobs:
         working-directory: ./scripts
       - run: touch scripts/.env
       - run: echo token=${{ secrets.MODRINTH }} >> ./scripts/.env
-      - run: echo commit_message=${{ secrets.github.event.head_commit.message }} >> ./scripts/.env
+      - run: echo commitMessage=${{ secrets.github.event.head_commit.message }} >> ./scripts/.env
       - run: node upload-modrinth.js
         working-directory: ./scripts

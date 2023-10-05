@@ -5,8 +5,6 @@ const path = require('path');
 
 require('dotenv').config()
 
-console.log(process.env)
-
 async function getVersionByGameVersion(game_version, modId, modLoader){
     const versions = (await axios.get(`https://api.modrinth.com/v2/project/${modId}/version`, {})).data
 
@@ -53,7 +51,7 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
 
         const data = {
             name: `${manifest.name} ${manifest.version} for ${version}`,
-            changelog: process.env['commit_message'],
+            changelog: process.env['commitMessage'],
             version_number: manifest.version,
             game_versions: [version],
             loaders: [manifest.modloader],
@@ -71,12 +69,11 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
         formData.append('mrpack', fs.createReadStream(path.dirname(__dirname)+'/exports/'+expectedMrpackName))
         formData.append('zip', fs.createReadStream(path.dirname(__dirname)+'/exports/'+expectedZipName))
 
-        await axios.post("https://api.modrinth.com/v2/version", {
+        await axios.post("https://api.modrinth.com/v2/version", formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authorization': process.env.token,
-            },
-            data: formData
+            }
         })
     }
 })()
