@@ -72,14 +72,14 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
 
         const formData = new FormData();
         formData.append('data', JSON.stringify(data))
-        //formData.append(expectedMrpackName, fs.createReadStream(path.dirname(__dirname)+'/exports/'+expectedMrpackName))
+        formData.append("_1", fs.createReadStream(path.dirname(__dirname)+'/exports/'+expectedMrpackName))
         formData.append("_0", fs.createReadStream(path.dirname(__dirname)+'/exports/'+expectedZipName))
 
         await axios.post("https://api.modrinth.com/v2/version", formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authorization': process.env.token,
-                'Content-Disposition': `form-data; name="_0"; filename="${expectedZipName}"`,
+                'Content-Disposition': `form-data; field="_0"; filename="${expectedZipName}", form-data; field="_1"; filename="${expectedZipName}"`,
             }
         })
     }
