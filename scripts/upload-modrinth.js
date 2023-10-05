@@ -79,8 +79,7 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authorization': process.env.token,
-                'Content-Disposition': `form-data; name="${expectedMrpackName}"; filename="${expectedMrpackName}"`,
-                'Content-Disposition': `form-data; name="${expectedZipName}"; filename="${expectedZipName}"`
+                'Content-Disposition': `form-data; name="${expectedMrpackName}"; filename="${expectedMrpackName}", form-data; name="${expectedZipName}"; filename="${expectedZipName}"`,
             }
         })
     }
