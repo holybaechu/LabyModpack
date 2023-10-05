@@ -33,10 +33,7 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
 
     for (let version of versions){
         await execSync(`ezpack export Modrinth ${version}`, {cwd: path.dirname(__dirname)})
-        await execSync(`ezpack export ModsZip ${version}`, {cwd: path.dirname(__dirname)})
-
         let expectedMrpackName = `Modrinth-${version}.mrpack`
-        let expectedZipName = `ModsZip-${version}.zip`
 
         const dependencies = []
         for (let mod of mods){
