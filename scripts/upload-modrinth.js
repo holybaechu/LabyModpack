@@ -62,7 +62,7 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
             status: 'listed',
             requested_status: 'listed',
             project_id: 'In8bmloC',
-            file_parts: [expectedMrpackName, expectedZipName],
+            file_parts: [expectedZipName],
             primary_file: expectedZipName,
             dependencies: dependencies,
             version_type: 'alpha'
@@ -79,7 +79,7 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authorization': process.env.token,
-                'Content-Disposition': `form-data; name="${expectedMrpackName}"; filename="${expectedMrpackName}"; form-data; name="${expectedZipName}"; filename="${expectedZipName}";`,
+                'Content-Disposition': `form-data; name="${expectedMrpackName}"; filename="${expectedMrpackName}";`,
             }
         })
     }
