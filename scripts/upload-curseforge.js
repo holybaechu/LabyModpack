@@ -61,7 +61,8 @@ async function getVersionIdByVersion(mc_version){
         await axios.post("https://minecraft.curseforge.com/api/projects/919035/upload-file", formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
-                'X-Api-Token': process.env.token
+                'X-Api-Token': process.env.token,
+                'User-Agent': "https://github.com/baechooYT/ezpack"
             }
         })
     }
