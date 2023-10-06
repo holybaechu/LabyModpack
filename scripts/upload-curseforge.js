@@ -14,9 +14,24 @@ async function getVersionIdByVersion(mc_version){
         }
     })
 
+    const versionTypes = await axios.get("https://minecraft.curseforge.com/api/game/version-types", {
+        headers: {
+            'X-Api-Token': process.env.token,
+            'User-Agent': "https://github.com/baechooYT/ezpack"
+        }
+    })
+
+    let versionTypeId = versionTypes.data[0].id
+    let formattedVersion = `minecraft-${mc_version.split('.')[0]}-${mc_version.split('.')[1]}`
+    for (let versionType of versions.data){
+        if (versionType.slug == formattedVersion){
+            versionTypeId = versionType.id
+        }
+    }
+
     let curseForgeVersion = versions.data[0]
     for (let version of versions.data){
-        if (version.name == mc_version){
+        if (version.name == mc_version && version.gameVersionTypeID == versionTypeId){
             curseForgeVersion = version
         }
     }
