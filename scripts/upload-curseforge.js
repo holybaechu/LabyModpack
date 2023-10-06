@@ -54,7 +54,7 @@ async function getVersionIdByVersion(mc_version){
 
         const formData = new formdata();
         formData.append('metadata', JSON.stringify(data))
-        formData.append('file', fs.createReadStream(expectedZipName), {
+        formData.append('file', fs.createReadStream(path.dirname(__dirname)+'/exports/'+expectedZipName), {
             filename: expectedZipName
         })
 
