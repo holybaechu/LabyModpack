@@ -8,7 +8,9 @@ require('dotenv').config()
 
 async function getVersionIdByVersion(mc_version){
     const versions = await axios.get("https://minecraft.curseforge.com/api/game/versions", {
-        'X-Api-Token': process.env.token
+        headers: {
+            'X-Api-Token': process.env.token
+        }
     })
 
     let curseForgeVersion = versions.data[0]
