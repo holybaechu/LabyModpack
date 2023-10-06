@@ -9,7 +9,8 @@ require('dotenv').config()
 async function getVersionIdByVersion(mc_version){
     const versions = await axios.get("https://minecraft.curseforge.com/api/game/versions", {
         headers: {
-            'X-Api-Token': process.env.token
+            'X-Api-Token': process.env.token,
+            'User-Agent': "https://github.com/baechooYT/ezpack"
         }
     })
 
