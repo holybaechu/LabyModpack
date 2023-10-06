@@ -7,15 +7,13 @@ const formdata = require('form-data')
 require('dotenv').config()
 
 async function getVersionIdByVersion(mc_version){
-    const versions = await axios.get("https://minecraft.curseforge.com/api/game/version-types", {
+    const versions = await axios.get("https://minecraft.curseforge.com/api/game/versions", {
         'X-Api-Token': process.env.token
     })
 
-    const curseForgeVersionSlug = `minecraft-${mc_version.split('.')[0]}-${mc_version.split('.')[1]}`
-
     let curseForgeVersion = versions.data[0]
     for (let version of versions.data){
-        if (version.slug == curseForgeVersionSlug){
+        if (version.name == mc_version){
             curseForgeVersion = version
         }
     }

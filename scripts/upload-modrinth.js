@@ -62,7 +62,8 @@ async function getVersionByGameVersion(game_version, modId, modLoader){
             file_parts: [expectedMrpackName],
             primary_file: expectedMrpackName,
             dependencies: dependencies,
-            version_type: 'alpha'
+            version_type: 'alpha',
+            featured: true
         }
 
         const formData = new formdata();
