@@ -6,23 +6,23 @@ on:
       - 'main'
 
 jobs:
-  upload-to-modrinth:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          registry-url: https://registry.npmjs.org/
-      - run: npm install -g mc-ezpack
-      - run: npm install
-        working-directory: ./scripts
-      - run: touch scripts/.env
-      - run: echo token="${{ secrets.MODRINTH }}" >> ./scripts/.env
-      - run: echo commitMessage="${{ github.event.head_commit.message }}" >> ./scripts/.env
-      - run: node upload-modrinth.js
-        working-directory: ./scripts
+#  upload-to-modrinth:
+#    runs-on: ubuntu-latest
+#    timeout-minutes: 10
+#    steps:
+#      - uses: actions/checkout@v3
+#      - uses: actions/setup-node@v3
+#        with:
+#          node-version: 18
+#          registry-url: https://registry.npmjs.org/
+#      - run: npm install -g mc-ezpack
+#      - run: npm install
+#        working-directory: ./scripts
+#      - run: touch scripts/.env
+#      - run: echo token="${{ secrets.MODRINTH }}" >> ./scripts/.env
+#      - run: echo commitMessage="${{ github.event.head_commit.message }}" >> ./scripts/.env
+#      - run: node upload-modrinth.js
+#        working-directory: ./scripts
   upload-to-curseforge:
     runs-on: ubuntu-latest
     timeout-minutes: 10
