@@ -7,7 +7,8 @@ const formdata = require('form-data')
 require('dotenv').config()
 
 async function getVersionByGameVersion(game_version, modId, modLoader){
-    const versions = (await axios.get(`https://api.modrinth.com/v2/project/${modId}/version`, {})).data
+    const versionsData = (await axios.get(`https://api.modrinth.com/v2/project/${modId}/version`, {})).data
+    const versions = versionsData.reverse()
 
     let matchVersion = versions[0]
     for (let version of versions){
