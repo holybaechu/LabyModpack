@@ -36,7 +36,7 @@ async function getVersionIdByVersion(mc_version){
         }
     }
 
-    console.log(curseForgeVersion, mc_version, formattedVersion, curseForgeVersion)
+    console.log(curseForgeVersion, mc_version, formattedVersion, curseForgeVersionType)
 
     return curseForgeVersion.id
 }
