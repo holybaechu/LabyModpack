@@ -31,7 +31,7 @@ async function getVersionIdByVersion(mc_version){
 
     let curseForgeVersion = versions.data[0]
     for (let version of versions.data){
-        if (version.name == mc_version && version.gameVersionTypeID == versionTypeId){
+        if (version.name == mc_version && version.gameVersionTypeID == curseForgeVersionType.id){
             curseForgeVersion = version
         }
     }
