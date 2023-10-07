@@ -21,11 +21,11 @@ async function getVersionIdByVersion(mc_version){
         }
     })
 
-    let curseForgeVersionType = versionTypes.data[0].id
+    let curseForgeVersionType = versionTypes.data[0]
     let formattedVersion = `minecraft-${mc_version.split('.')[0]}-${mc_version.split('.')[1]}`
-    for (let versionType of versions.data) {
+    for (let versionType of versionTypes.data) {
         if (versionType.slug == formattedVersion) {
-            curseForgeVersionType = versionType.id
+            curseForgeVersionType = versionType
         }
     }
 
@@ -35,8 +35,6 @@ async function getVersionIdByVersion(mc_version){
             curseForgeVersion = version
         }
     }
-
-    console.log(curseForgeVersion, mc_version, formattedVersion, curseForgeVersionType)
 
     return curseForgeVersion.id
 }
