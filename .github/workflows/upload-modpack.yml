@@ -19,10 +19,15 @@ jobs:
       - run: npm install
         working-directory: ./scripts
       - run: touch scripts/.env
-      - run: echo token=${{ secrets.MODRINTH }} >> ./scripts/.env
-      - run: echo commitMessage=${{ github.event.head_commit.message }} >> ./scripts/.env
+      - run: echo token="${{ secrets.MODRINTH }}" >> ./scripts/.env
+      - run: echo commitMessage="${{ github.event.head_commit.message }}" >> ./scripts/.env
       - run: node upload-modrinth.js
         working-directory: ./scripts
+      - name: Upload exports to artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: ./exports
   upload-to-curseforge:
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -36,7 +41,12 @@ jobs:
       - run: npm install
         working-directory: ./scripts
       - run: touch scripts/.env
-      - run: echo token=${{ secrets.CURSEFORGE }} >> ./scripts/.env
-      - run: echo commitMessage=${{ github.event.head_commit.message }} >> ./scripts/.env
+      - run: echo token="${{ secrets.CURSEFORGE }}" >> ./scripts/.env
+      - run: echo commitMessage="${{ github.event.head_commit.message }}" >> ./scripts/.env
       - run: node upload-curseforge.js
         working-directory: ./scripts
+      - name: Upload exports to artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: ./exports
