@@ -40,3 +40,8 @@ jobs:
       - run: echo commitMessage=${{ github.event.head_commit.message }} >> ./scripts/.env
       - run: node upload-curseforge.js
         working-directory: ./scripts
+      - name: Upload exports to artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: exports
+          path: ./exports
