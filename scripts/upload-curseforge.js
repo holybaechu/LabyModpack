@@ -7,15 +7,31 @@ const formdata = require('form-data')
 require('dotenv').config()
 
 async function getVersionIdByVersion(mc_version){
-    const versions = await axios.get("https://minecraft.curseforge.com/api/game/version-types", {
-        'X-Api-Token': process.env.token
+    const versions = await axios.get("https://minecraft.curseforge.com/api/game/versions", {
+        headers: {
+            'X-Api-Token': process.env.token,
+            'User-Agent': "https://github.com/baechooYT/ezpack"
+        }
     })
 
-    const curseForgeVersionSlug = `minecraft-${mc_version.split('.')[0]}-${mc_version.split('.')[1]}`
+    const versionTypes = await axios.get("https://minecraft.curseforge.com/api/game/version-types", {
+        headers: {
+            'X-Api-Token': process.env.token,
+            'User-Agent': "https://github.com/baechooYT/ezpack"
+        }
+    })
+
+    let curseForgeVersionType = versionTypes.data[0]
+    let formattedVersion = `minecraft-${mc_version.split('.')[0]}-${mc_version.split('.')[1]}`
+    for (let versionType of versionTypes.data) {
+        if (versionType.slug == formattedVersion) {
+            curseForgeVersionType = versionType
+        }
+    }
 
     let curseForgeVersion = versions.data[0]
     for (let version of versions.data){
-        if (version.slug == curseForgeVersionSlug){
+        if (version.name == mc_version && version.gameVersionTypeID == curseForgeVersionType.id){
             curseForgeVersion = version
         }
     }
@@ -48,19 +64,20 @@ async function getVersionIdByVersion(mc_version){
             gameVersions: [await getVersionIdByVersion(version)],
             loaders: [manifest.modloader],
             releaseType: 'alpha',
-            relations: dependencies
+            relations: {projects: dependencies}
         }
 
         const formData = new formdata();
         formData.append('metadata', JSON.stringify(data))
-        formData.append('file', fs.createReadStream(expectedZipName), {
+        formData.append('file', fs.createReadStream(path.dirname(__dirname)+'/exports/'+expectedZipName), {
             filename: expectedZipName
         })
 
         await axios.post("https://minecraft.curseforge.com/api/projects/919035/upload-file", formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
-                'X-Api-Token': process.env.token
+                'X-Api-Token': process.env.token,
+                'User-Agent': "https://github.com/baechooYT/ezpack"
             }
         })
     }

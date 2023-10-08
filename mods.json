@@ -1,1 +1,86 @@
-[{"slug":"cloth-config","mirrors":{"Modrinth":{"id":"9s6osm5g"},"CurseForge":{"id":348521}}},{"slug":"fabric-api","mirrors":{"Modrinth":{"id":"P7dR8mSH"},"CurseForge":{"id":306612}}},{"slug":"ferrite-core","mirrors":{"Modrinth":{"id":"uXXizFIs"}}},{"slug":"indium","mirrors":{"Modrinth":{"id":"Orvt0mRa"},"CurseForge":{"id":459496}}},{"slug":"lazydfu","mirrors":{"Modrinth":{"id":"hvFnDODi"},"CurseForge":{"id":433518}}},{"slug":"lithium","mirrors":{"Modrinth":{"id":"gvQqBUqZ"}}},{"slug":"modmenu","mirrors":{"Modrinth":{"id":"mOgUt4GM"}}},{"slug":"starlight","mirrors":{"Modrinth":{"id":"H8CaAYZC"},"CurseForge":{"id":521783}}},{"slug":"sodium","mirrors":{"Modrinth":{"id":"AANobbMI"}}}]
+[
+  {
+    "slug": "cloth-config",
+    "mirrors": {
+      "Modrinth": {
+        "id": "9s6osm5g"
+      },
+      "CurseForge": {
+        "id": 348521
+      }
+    }
+  },
+  {
+    "slug": "ferrite-core",
+    "mirrors": {
+      "Modrinth": {
+        "id": "uXXizFIs"
+      }
+    }
+  },
+  {
+    "slug": "immediatelyfast",
+    "mirrors": {
+      "Modrinth": {
+        "id": "5ZwdcRci"
+      },
+      "CurseForge": {
+        "id": 686911
+      }
+    }
+  },
+  {
+    "slug": "lazydfu",
+    "mirrors": {
+      "Modrinth": {
+        "id": "hvFnDODi"
+      },
+      "CurseForge": {
+        "id": 433518
+      }
+    }
+  },
+  {
+    "slug": "lithium",
+    "mirrors": {
+      "Modrinth": {
+        "id": "gvQqBUqZ"
+      }
+    }
+  },
+  {
+    "slug": "memoryleakfix",
+    "mirrors": {
+      "Modrinth": {
+        "id": "NRjRiSSD"
+      }
+    }
+  },
+  {
+    "slug": "modmenu",
+    "mirrors": {
+      "Modrinth": {
+        "id": "mOgUt4GM"
+      }
+    }
+  },
+  {
+    "slug": "sodium",
+    "mirrors": {
+      "Modrinth": {
+        "id": "AANobbMI"
+      }
+    }
+  },
+  {
+    "slug": "starlight",
+    "mirrors": {
+      "Modrinth": {
+        "id": "H8CaAYZC"
+      },
+      "CurseForge": {
+        "id": 521783
+      }
+    }
+  }
+]
