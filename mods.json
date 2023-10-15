@@ -49,22 +49,6 @@
     }
   },
   {
-    "slug": "memoryleakfix",
-    "mirrors": {
-      "Modrinth": {
-        "id": "NRjRiSSD"
-      }
-    }
-  },
-  {
-    "slug": "modmenu",
-    "mirrors": {
-      "Modrinth": {
-        "id": "mOgUt4GM"
-      }
-    }
-  },
-  {
     "slug": "sodium",
     "mirrors": {
       "Modrinth": {
