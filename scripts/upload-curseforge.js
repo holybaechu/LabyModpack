@@ -64,7 +64,8 @@ async function getVersionIdByVersion(mc_version){
             gameVersions: [await getVersionIdByVersion(version)],
             loaders: [manifest.modloader],
             releaseType: 'alpha',
-            relations: {projects: dependencies}
+            relations: {projects: dependencies},
+            "overrides": "overrides"
         }
 
         const formData = new formdata();
