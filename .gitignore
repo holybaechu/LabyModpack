@@ -1,2 +1,3 @@
 exports
 /scripts/node_modules/
+/scripts/.env
